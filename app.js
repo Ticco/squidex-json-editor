@@ -91,3 +91,24 @@ window.addEventListener('resize', () => setEditorHeight());
 
 // 3) run once more after fonts/CDN load settles
 setTimeout(setEditorHeight, 300);
+const ed = monaco.editor.create(editorEl, {
+  language: 'json',
+  automaticLayout: true,
+  minimap: { enabled: false },
+  tabSize: 2
+});
+
+// helper to enforce height + relayout
+const relayout = () => {
+  editorEl.style.height = Math.max(500, Math.floor(window.innerHeight * 0.7)) + 'px';
+  ed.layout();
+};
+
+// run once on init
+relayout();
+
+// run again after Squidex does its first sizing
+setTimeout(relayout, 300);
+
+// and whenever window resizes
+window.addEventListener('resize', relayout);
