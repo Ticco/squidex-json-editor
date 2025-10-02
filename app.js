@@ -71,3 +71,23 @@
     });
   });
 })();
+// after you create `const ed = monaco.editor.create(...)` add:
+
+// Give the editor element a definite height on first load (safety net).
+const setEditorHeight = () => {
+  // at least 500px, or 70% of viewport if larger
+  const target = Math.max(500, Math.floor(window.innerHeight * 0.7));
+  const el = document.getElementById('editor');
+  if (el) el.style.height = target + 'px';
+  // tell monaco to recompute layout when size changes
+  if (ed && ed.layout) ed.layout();
+};
+
+// 1) immediately after create:
+setEditorHeight();
+
+// 2) re-run on window resize:
+window.addEventListener('resize', () => setEditorHeight());
+
+// 3) run once more after fonts/CDN load settles
+setTimeout(setEditorHeight, 300);
