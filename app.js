@@ -28,16 +28,15 @@
       // eslint-disable-next-line no-undef
       const ed = monaco.editor.create(editorEl, {
         language: 'json',
-        automaticLayout: true, // still call layout() after sizing events
+        automaticLayout: true,
         minimap: { enabled: false },
         tabSize: 2,
       });
 
       // ---- Layout helpers ----
       const relayout = () => {
-        // Force a visible height and tell Monaco to recompute layout.
-        // Use max of 500px or 70% of viewport.
-        const target = Math.max(500, Math.floor(window.innerHeight * 0.7));
+        // Use at least 260px or 70% of viewport
+        const target = Math.max(260, Math.floor(window.innerHeight * 0.7));
         editorEl.style.height = target + 'px';
         if (ed && ed.layout) ed.layout();
       };
@@ -52,7 +51,6 @@
       // Also run when Squidex signals the field is initialized
       field.onInit(() => {
         relayout();
-        // Optional initial pull
         field.getValue().then((v) => {
           const text = typeof v === 'string' ? v : v ? JSON.stringify(v) : '';
           if (text && text !== ed.getValue()) ed.setValue(text);
@@ -76,7 +74,7 @@
         } catch (e) {
           setStatus('✗ ' + e.message, false);
         }
-        field.valueChanged(text); // keep it as STRING
+        field.valueChanged(text); // keep as STRING
       };
 
       ed.onDidChangeModelContent(push);
