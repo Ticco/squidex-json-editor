@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Squidex JSON Editor (String Field)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Squidex Editor SDK -->
+  <script src="https://cloud.squidex.io/scripts/editor-sdk.js" defer></script>
+
+  <!-- Monaco AMD loader (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js" defer></script>
+
+  <!-- Our logic -->
+  <script src="./app.js" defer></script>
+
+  <style>
+    html, body { margin:0; height:100%; }
+    #toolbar { padding:8px; font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    #status { margin-left:8px; font:12px/1.4 monospace; }
+    #editor { height: calc(100% - 44px); }
+    button { padding:6px 10px; border-radius:8px; border:1px solid #ccc; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <button id="format">Format</button>
+    <button id="minify">Minify</button>
+    <span id="status"></span>
+  </div>
+  <div id="editor"></div>
+</body>
+</html>
