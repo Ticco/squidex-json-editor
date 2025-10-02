@@ -22,7 +22,7 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100px; /* ensures iframe has content height */
+  min-height: 300px; /* ensures iframe has content height */
 }
 
 #toolbar {
@@ -32,12 +32,12 @@ body {
 
 #editor {
   flex: 1 1 auto;
-  min-height: 100px;  /* key: not zero */
+  min-height: 300px;  /* key: not zero */
 }
 
   html, body { margin:0; height:100%; }
   /* create real height for the iframe to measure */
-  body { display:flex; flex-direction:column; min-height:100px; }
+  body { display:flex; flex-direction:column; min-height:300px; }
 
   #toolbar { padding:8px; font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
   #status { margin-left:8px; font:12px/1.4 monospace; }
