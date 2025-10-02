@@ -1,0 +1,1 @@
+# squidex-json-editor
